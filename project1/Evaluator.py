@@ -67,7 +67,7 @@ def monteCarlo(G, seedSet1, seedSet2, TIMES):
 
 
 def main(args):
-    TIMES = 1000
+    TIMES = 500
 
     G = createGraph(args.network)
     seedSet1, seedSet2 = loadSeed(args.initial_seed_set, args.budget)
@@ -114,3 +114,8 @@ if __name__ == "__main__":
 
 # python Evaluator.py -n C:\Users\aaron\Documents\CS303_AI\project1\Testcase\Evaluator\map1\dataset1 -i C:\Users\aaron\Documents\CS303_AI\project1\Testcase\Evaluator\map1\seed -b C:\Users\aaron\Documents\CS303_AI\project1\Testcase\Evaluator\map1\seed_balanced -k 100 -o C:\Users\aaron\Documents\CS303_AI\project1\Testcase\Evaluator\map1\result.txt
 # python Evaluator.py -n C:\Users\aaron\Documents\CS303_AI\project1\Testcase\Evaluator\map2\dataset2 -i C:\Users\aaron\Documents\CS303_AI\project1\Testcase\Evaluator\map2\seed -b C:\Users\aaron\Documents\CS303_AI\project1\Testcase\Evaluator\map2\seed_balanced -k 100 -o C:\Users\aaron\Documents\CS303_AI\project1\Testcase\Evaluator\map2\result.txt
+
+# python Evaluator.py -n C:\Users\aaron\Documents\CS303_AI\project1\Testcase\Heuristic\map1\dataset1 -i C:\Users\aaron\Documents\CS303_AI\project1\Testcase\Heuristic\map1\seed -b C:\Users\aaron\Documents\CS303_AI\project1\Testcase\Heuristic\map1\seed_balanced -k 10 -o C:\Users\aaron\Documents\CS303_AI\project1\test_result.txt
+# python Evaluator.py -n C:\Users\aaron\Documents\CS303_AI\project1\Testcase\Heuristic\map2\dataset2 -i C:\Users\aaron\Documents\CS303_AI\project1\Testcase\Heuristic\map2\seed -b C:\Users\aaron\Documents\CS303_AI\project1\Testcase\Heuristic\map2\seed_balanced -k 15 -o C:\Users\aaron\Documents\CS303_AI\project1\test_result.txt
+
+# python Evaluator.py -n C:\Users\aaron\Documents\CS303_AI\project1\Testcase\Evolutionary\map1\dataset1 -i C:\Users\aaron\Documents\CS303_AI\project1\Testcase\Evolutionary\map1\seed -b C:\Users\aaron\Documents\CS303_AI\project1\Testcase\Evolutionary\map1\seed_balanced -k 10 -o C:\Users\aaron\Documents\CS303_AI\project1\test_result.txt

@@ -1,4 +1,5 @@
 import argparse
+import time
 import numpy as np
 import networkx as nx
 from collections import deque
@@ -43,57 +44,68 @@ def diffusion(G, seedSet, valueType):
 
 
 def greedyBestFirstSearch(G, seedSet1, seedSet2, budget, TIMES):
+    N = len(G.nodes)
     S1, S2 = [], []
-    h1Values = {}
-    h2Values = {}
-    h1 = 0
-    h2 = 0
-    while len(S1) + len(S2) <= budget:
-        for _ in range(TIMES):
-            print(len(S1) + len(S2))
+    h1Values = np.zeros(N)
+    h2Values = np.zeros(N)
+
+    while len(S1) + len(S2) < budget:
+
+        for i in range(TIMES):
+            # print(f"{i} length: ", len(S1) + len(S2))
             exposed1, activated1 = diffusion(G, seedSet1, "weight1")
             exposed2, activated2 = diffusion(G, seedSet2, "weight2")
 
             symmetricDiff = exposed1 ^ exposed2
-            bothORnone = len(G.nodes) - len(symmetricDiff)
+            bothORnone = N - len(symmetricDiff)
+
             for node in G.nodes:
-                if node in activated1:
-                    continue
-                else:
+                if node not in activated1:
                     exposed1_v, activated1_v = diffusion(G, {node}, "weight1")
-                if node in activated2:
-                    continue
+                    symmetricDiff1_v = exposed1_v.union(exposed1) ^ exposed2
+                    bothORnone1_v = N - len(symmetricDiff1_v)
+                    h1Values[node] += bothORnone1_v - bothORnone
                 else:
+                    continue
+
+            for node in G.nodes:
+                if node not in activated2:
                     exposed2_v, activated2_v = diffusion(G, {node}, "weight2")
+                    symmetricDiff2_v = exposed2_v.union(exposed2) ^ exposed1
+                    bothORnone2_v = N - len(symmetricDiff2_v)
+                    h2Values[node] += bothORnone2_v - bothORnone
+                else:
+                    continue
 
-                symmetricDiff1_v = exposed1_v ^ exposed2
-                bothORnone1_v = len(G.nodes) - len(symmetricDiff1_v)
-                h1 += bothORnone1_v - bothORnone
+        h1Values /= TIMES
+        h2Values /= TIMES
 
-                symmetricDiff2_v = exposed2_v ^ exposed1
-                bothORnone2_v = len(G.nodes) - len(symmetricDiff2_v)
-                h2 += bothORnone2_v - bothORnone
-            h1Values[node] = h1 / TIMES
-            h2Values[node] = h2 / TIMES
+        if np.max(h1Values) > np.max(h2Values):
+            bestNode = np.argmax(h1Values)
+            S1.append(bestNode)
+            seedSet1.append(bestNode)
+            h1Values[bestNode] = -np.inf
+        else:
+            bestNode = np.argmax(h2Values)
+            S2.append(bestNode)
+            seedSet2.append(bestNode)
+            h2Values[bestNode] = -np.inf
 
-        S1.append(max(h1Values, key=h1Values.get))
-        S2.append(max(h2Values, key=h2Values.get))
-        print(S1)
-        print(S2)
+        # print(S1)
+        # print(S2)
 
     return S1, S2
 
 
 def main(args):
-
-    TIMES = 10
-
+    start = time.time()
+    TIMES = 2
     G = createGraph(args.network)
     seedSet1, seedSet2 = loadSeed(args.initial_seed_set, args.budget)
-
-    # finalValue = monteCarlo(G, seedSet1, seedSet2, TIMES)
-
     S1, S2 = greedyBestFirstSearch(G, seedSet1, seedSet2, args.budget, TIMES)
+    end = time.time()
+
+    print(f"Time: {end - start:.2f}")
 
     with open(args.balanced_seed_set, "w") as f:
         f.write(f"{len(S1)} {len(S2)}\n")
