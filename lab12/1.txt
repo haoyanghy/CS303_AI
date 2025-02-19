@@ -1,0 +1,14 @@
+The best combination of the six important players in the volleyball team (1, 3, 4, 6, 9, 12) should follow the following rules:
+ Players 4 and 6 need to play together.
+ Player 3 does not play the game if and only if player 1 does not play.
+ Either player 3 or player 6 should appear on the court, and they can not appear at the same time.
+ If players 9 and 12 are on the court, then player 4 must be on the court.
+ If players 1 and 12 need to play at the same time in one game, who of the other 4 players should play?
+
+(1) Please use propositional logic to represent the above statement.
+a. p4 <-> p6
+b. -p1 <-> -p3
+c. p3 AND -p6
+d. p9 AND p3 -> p4
+(2) Convert them into a CNF.
+(3) Apply the DPLL algorithm to derive which players should be on the court.
