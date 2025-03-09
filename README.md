@@ -1,4 +1,4 @@
-# CS310-Natural-Language-Processing
+# CS303 Artificial Intelligence
 
 SUSTech 2024 Spring CS303 Artificial Intelligence by Prof. Tang Ke.
 
@@ -27,14 +27,11 @@ SUSTech 2024 Spring CS303 Artificial Intelligence by Prof. Tang Ke.
 
 #### 2. Image Classification and Feature Selection
 
-- Subtask 1: Supervised Learning for Image Classification
-  Implemented a Softmax Regression model for image classification using preprocessed image vectors.
+- Supervised Learning for Image Classification: Implemented a Softmax Regression model for image classification using preprocessed image vectors.
 
-- Subtask 2: Unsupervised Learning for Image Retrieval
-  Developed a Nearest Neighbor Search (NNS) system using Euclidean and cosine similarity for content-based image retrieval.
+- Unsupervised Learning for Image Retrieval: Developed a Nearest Neighbor Search (NNS) system using Euclidean and cosine similarity for content-based image retrieval.
 
-- Subtask 3: Feature Selection
-  Compared random selection with SelectKBest (ANOVA F-test) for dimensionality reduction.
+- Feature Selection: Compared random selection with SelectKBest (ANOVA F-test) for dimensionality reduction.
 
 #### 3. Knowledge Graph-Based Recommender System (KGRS)
 
