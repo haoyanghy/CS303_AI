@@ -1,6 +1,6 @@
 # CS303 Artificial Intelligence
 
-SUSTech 2024 Spring CS303 Artificial Intelligence by Prof. Tang Ke.
+SUSTech 2024 Fall CS303 Artificial Intelligence by Prof. Tang Ke.
 
 ## Topics
 
